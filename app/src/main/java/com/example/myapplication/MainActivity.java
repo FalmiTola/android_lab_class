@@ -2,31 +2,41 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText fname_edit;
+    Button savebt;
+    TextView fname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        WindowCompat.enableEdgeToEdge(getWindow());
-        setContentView(R.layout.activity_main);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        setContentView(R.layout.lab_demo);
+
+        fname = findViewById(R.id.fname);
+        fname_edit = findViewById(R.id.fname_edit);
+        savebt = findViewById(R.id.savebt);
+
+        savebt.setOnClickListener(v -> {
+
+            String name = fname_edit.getText().toString().trim();
+
+            if (name.isEmpty()) {
+                fname_edit.setError("Please enter your name");
+            } else {
+                Toast.makeText(
+                    MainActivity.this,
+                    "Welcome " + name,
+                    Toast.LENGTH_SHORT
+                ).show();
+            }
         });
-
-        TextView textView = findViewById(R.id.textView);
-        Button button = findViewById(R.id.button);
-
-        button.setOnClickListener(v -> textView.setText(R.string.hello_motuma));
     }
 }
