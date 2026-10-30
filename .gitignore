@@ -13,3 +13,25 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+
+# IntelliJ related
+*.ipr
+*.iws
+.idea/
+
+# Android Studio build artifacts
+/android/app/debug
+/android/app/profile
+/android/app/release
